@@ -258,3 +258,89 @@ select min(no_of_hobalis) from taluka_information;
 
 select avg(total_area) from taluka_information;
 
+
+
+CREATE TABLE freedom_fighters(id int, name varchar(30), birth_place varchar(30), birth_date Date, region varchar(40));
+
+SELECT * FROM freedom_fighters;
+DESC freedom_fighters;
+
+/*Syntax for adding the constrint to existing column
+ALTER TABLE table_name ADD CONSTRAINT constraint_name CONSTRAINT_TYPE(COLUMN_NAME);*/
+ALTER TABLE freedom_fighters ADD CONSTRAINT freedom_figh_uk UNIQUE (name);
+
+
+
+
+
+SELECT * FROM taluka_information;
+select * from district_information;
+
+
+
+
+SELECT * FROM bank_data;
+
+SELECT * FROM freedom_fighters;
+SELECT * FROM british_officers;
+
+
+Joins:
+
+1)Inner join:
+/*Syntax for Inner join
+SELECT * FROM table_name inner join table_name on condition;*/
+
+
+CREATE TABLE c(id int,name varchar(30));
+INSERT INTO c values(1,'Laptop'),(5,'Charger'),(2,'UPS'),(6,'Lamp'),(8,'Mobile');
+SELECT * FROM a; 
+SELECT * FROM b; 
+SELECT * FROM C; 
+
+SELECT * FROM a inner join b on a.id = b.id  INNER JOIN C ON b.id = c.id inner join freedom_fighters f on f.id = c.id;
+SELECT * FROM a inner join freedom_fighters f on a.name = f.name;
+
+
+SELECT * FROM freedom_fighters;
+SELECT * FROM british_officers;
+
+SELECT f.id,f.name,b.id,b.name FROM freedom_fighters f inner join british_officers b ON f.id = b.id;
+
+CREATE TABLE e(id INT);
+insert into e values(1),(2),(4),(5),(7);
+create table d(id int);
+insert into d values(3),(2),(6),(5),(8);
+SELECT * FROM d; 3,2,6,5,8
+SELECT * FROM e; 1,2,4,5,7,
+
+LEFT JOIN:
+
+SELECT * FROM d LEFT JOIN e ON d.id = e.id LEFT JOIN c on c.id = e.id;
+SELECT * FROM a LEFT JOIN b ON a.name = b.name;
+
+RIGHT JOIN:
+
+SELECT * FROM d RIGHT JOIN e ON d.id = e.id;
+SELECT * FROM b RIGHT JOIN a ON a.name = b.name;
+
+CREATE TABLE bank_information(id int not null, b_name varchar(40) unique not null, b_id int not null, no_of_customers int not null, 
+loan_status varchar(30) default 'ACTIVE',location varchar(30) not null);
+CREATE TABLE cust_information(id int not null, c_name varchar(30) not null, balance bigint not null,c_id int not null, b_id int not null, 
+c_location varchar(30));
+CREATE TABLE loan_information(id int not null, loan_type varchar(40), loan_amount bigint not null, c_id int not null);
+
+SELECT * FROM bank_information; -- no duplicates, b_id 501
+SELECT * FROM cust_information;  b_id 5-6 values same from b_id of bank_information table , c-id 701
+select * from loan_information; c_id 5-6 values same from c_id of cust_information table.
+
+
+
+
+
+SELECT * FROM cust_details;
+
+
+
+
+
